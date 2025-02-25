@@ -1,4 +1,4 @@
-package com.wotos.wotosvehicleservice.client.wot;
+package com.wotos.wotosvehicleservice.client.wot.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wotos.wotosvehicleservice.client.wot.extra.WotAmmo;

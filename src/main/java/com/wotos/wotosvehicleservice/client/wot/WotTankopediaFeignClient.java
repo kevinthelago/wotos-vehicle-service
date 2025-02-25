@@ -1,5 +1,6 @@
 package com.wotos.wotosvehicleservice.client.wot;
 
+import com.wotos.wotosvehicleservice.client.wot.vehicle.WotVehicle;
 import com.wotos.wotosvehicleservice.validation.constraints.Language;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
