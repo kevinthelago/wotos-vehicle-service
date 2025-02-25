@@ -4,7 +4,7 @@
 
 [//]: # (![Tests]&#40;https://github.com/kevinthelago/wotos-vehicle-service/actions/workflows/maven.yml/tests.svg&#41;)
 
-World of Tanks Online Statistics Vehicle Service is a micro-service written in Java/Spring which integrates with War-Gaming's World of Tanks API.
+World of Tanks Online Statistics Vehicle Service is a micro-service written in Java/Spring which integrates with War-Gaming's World of Tanks API. The service aims to compare raw vehicle statistics and improve decision making for vehicle configuration and usage.
 
 ## Running Locally
 
@@ -13,8 +13,6 @@ World of Tanks Online Statistics Vehicle Service is a micro-service written in J
 Include Steps to running locally using Intellij
 
 </details>
-
----
 
 <details><summary><h2>Command Line</h2></summary>
 
