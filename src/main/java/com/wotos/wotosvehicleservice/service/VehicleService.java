@@ -1,7 +1,7 @@
 package com.wotos.wotosvehicleservice.service;
 
 import com.wotos.wotosvehicleservice.client.wot.WotTankopediaFeignClient;
-import com.wotos.wotosvehicleservice.client.wot.WotVehicle;
+import com.wotos.wotosvehicleservice.client.wot.vehicle.WotVehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -10,14 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.wotos.wotosvehicleservice.config.Settings.WG_APP_ID;
+
 @Service
 public class VehicleService {
-
-    @Value("${env.app_id}")
-    private String APP_ID;
-
     @Autowired
-    WotTankopediaFeignClient wotTankopediaFeignClient;
+    private WotTankopediaFeignClient wotTankopediaFeignClient;
 
     public VehicleService() {
 
@@ -44,7 +42,7 @@ public class VehicleService {
         try {
             return Objects.requireNonNull(
                     wotTankopediaFeignClient.getVehicles(
-                            APP_ID, fields, language, limit, nations, pageNumber, vehicleIds, vehicleTiers, vehicleTypes
+                            WG_APP_ID, fields, language, limit, nations, pageNumber, vehicleIds, vehicleTiers, vehicleTypes
                     ).getBody()
             ).getData();
         } catch (NullPointerException e) {
