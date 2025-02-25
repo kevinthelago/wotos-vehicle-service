@@ -1,4 +1,4 @@
-package com.wotos.wotosvehicleservice.util.model.extra;
+package com.wotos.wotosvehicleservice.client.wot.extra;
 
 public class WotArmorValues {
 

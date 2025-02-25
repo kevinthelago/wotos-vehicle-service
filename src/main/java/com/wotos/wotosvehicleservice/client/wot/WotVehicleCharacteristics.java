@@ -1,8 +1,8 @@
-package com.wotos.wotosvehicleservice.util.model;
+package com.wotos.wotosvehicleservice.client.wot;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.wotos.wotosvehicleservice.util.model.extra.WotAmmo;
-import com.wotos.wotosvehicleservice.util.model.modules.*;
+import com.wotos.wotosvehicleservice.client.wot.extra.WotAmmo;
+import com.wotos.wotosvehicleservice.client.wot.modules.*;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.wotos.wotosvehicleservice.util.model;
+package com.wotos.wotosvehicleservice.client.wot;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

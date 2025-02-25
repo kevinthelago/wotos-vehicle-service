@@ -1,7 +1,7 @@
 package com.wotos.wotosvehicleservice.controller;
 
 import com.wotos.wotosvehicleservice.service.VehicleService;
-import com.wotos.wotosvehicleservice.util.model.WotVehicle;
+import com.wotos.wotosvehicleservice.client.wot.WotVehicle;
 import com.wotos.wotosvehicleservice.validation.constraints.Language;
 import com.wotos.wotosvehicleservice.validation.constraints.VehicleType;
 import org.springframework.beans.factory.annotation.Autowired;

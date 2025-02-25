@@ -1,7 +1,7 @@
 package com.wotos.wotosvehicleservice.service;
 
-import com.wotos.wotosvehicleservice.util.feign.WotTankopediaFeignClient;
-import com.wotos.wotosvehicleservice.util.model.WotVehicle;
+import com.wotos.wotosvehicleservice.client.wot.WotTankopediaFeignClient;
+import com.wotos.wotosvehicleservice.client.wot.WotVehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
