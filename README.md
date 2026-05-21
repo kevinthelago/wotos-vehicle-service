@@ -1,21 +1,69 @@
-# WoTOS Vehicle Service
+# WoToS Vehicle Service
 
 ![Build](https://github.com/kevinthelago/wotos-vehicle-service/actions/workflows/maven.yml/badge.svg)
 
-[//]: # (![Tests]&#40;https://github.com/kevinthelago/wotos-vehicle-service/actions/workflows/maven.yml/tests.svg&#41;)
+Microservice in the [WoToS](https://github.com/users/kevinthelago/projects/2) system. Fetches vehicle and module data from the World of Tanks Tankopedia API and exposes it to the edge service. Has no persistent database — all data is retrieved live from the WoT API on request.
 
-World of Tanks Online Statistics Vehicle Service is a micro-service written in Java/Spring which integrates with War-Gaming's World of Tanks API. The service aims to compare raw vehicle statistics and improve decision making for vehicle configuration and usage.
+## Prerequisites
+
+- Java 8 (Temurin recommended)
+- Maven or the included `./mvnw` wrapper
+- WoT application ID set as environment variable: `wg-app-id`
+- `wotos-eureka-server` running (service registry)
+- `wotos-config-server` running at `localhost:4040` (serves application config)
 
 ## Running Locally
 
-<details><summary><h2>Intellij</h2></summary>
+### Command Line
 
-Include Steps to running locally using Intellij
+```bash
+./mvnw spring-boot:run
+```
 
-</details>
+### IntelliJ
 
-<details><summary><h2>Command Line</h2></summary>
+1. Open the project root in IntelliJ IDEA.
+2. Set the environment variable `wg-app-id=<your-app-id>` in the Run Configuration.
+3. Run `WotosVehicleServiceApplication`.
 
-Include Steps to running locally using bash, zshell, command line or powershell
+## Building
 
-</details>
+```bash
+./mvnw clean package        # build JAR, skip tests
+./mvnw clean install        # build JAR + run all tests
+```
+
+## Testing
+
+```bash
+./mvnw test                          # run all tests
+./mvnw test -Dtest=VehicleServiceTest  # run a single test class
+```
+
+## API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/api/vehicles` | Fetch vehicles from WoT Tankopedia with optional filters |
+| `GET` | `/api/modules` | Fetch vehicle modules from WoT Tankopedia |
+
+### Vehicle query parameters
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `vehicleIds` | `Integer[]` | Filter by specific vehicle IDs |
+| `vehicleTiers` | `Integer[]` | Filter by tier (1–10) |
+| `types` | `String[]` | Filter by type (e.g. `heavyTank`, `mediumTank`) |
+| `nations` | `String[]` | Filter by nation |
+| `language` | `String` | Response language (default: `en`) |
+| `fields` | `String[]` | Limit returned fields |
+| `limit` | `Integer` | Max results |
+| `page` | `Integer` | Page number |
+
+## Swagger UI
+
+Once the service is running, API documentation is available at:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
