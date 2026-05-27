@@ -1,14 +1,17 @@
+# The WoT application_id is injected from the WG_APP_ID environment variable at
+# runtime — sourced from GitHub Actions secrets in CI and the deployment secret
+# store in prod (a Spring Cloud Config server may also override it). Secrets must
+# never be hardcoded here or committed to source control.
+# The datasource block is currently inert (JPA and the MySQL driver are disabled
+# in pom.xml) and is retained as scaffolding for the planned vehicle CRUD work (#7).
 spring:
   jpa:
     generate-ddl: true
   datasource:
     initialization-mode: always
-    url: jdbc:mysql://localhost:3306/wotos_vehicles_database?useSSL=false
-    username: root
-    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 env:
-  wg-app-id: "da67d6dbc1f23b9e54688febe7d5da56"
+  wg-app-id: ${WG_APP_ID:}
   urls:
     world_of_tanks_api: "https://api.worldoftanks.com/wot"
