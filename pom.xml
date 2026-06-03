@@ -134,6 +134,15 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.12</version>
+				<configuration>
+					<!-- Exclude generated-style data holders + the bootstrap class so the
+					     coverage number reflects business logic, not DTO getters. -->
+					<excludes>
+						<exclude>com/wotos/wotosvehicleservice/client/**</exclude>
+						<exclude>com/wotos/wotosvehicleservice/dao/**</exclude>
+						<exclude>**/WotosVehicleServiceApplication.*</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>

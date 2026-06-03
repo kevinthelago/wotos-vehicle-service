@@ -1,0 +1,10 @@
+target/
+.git/
+.github/
+.idea/
+*.iml
+.mvn/
+mvnw
+mvnw.cmd
+*.md
+DECISIONS.md
