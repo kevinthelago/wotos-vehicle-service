@@ -4,3 +4,5 @@
 
 - PUBLISHED contract: ArmorProfile JSON = {vehicleId:int, zones:[{key:string, thicknessMm:number, geometryRef:string, normalHint?:[x,y,z]}], generatedFrom:'tanks.gg'|'manual', generatedAt:ISO-8601}. normalHint omitted when absent. GET /api/vehicles/{id}/armor -> 200 ArmorProfile or 404. LOCKED for backend-edge (/garage fan-out) + frontend-garage (mesh paint).
 
+- PUBLISHED contract: GET /api/vehicles/{id}/model -> 200 {url, etag, sizeBytes, format} (url = 60s presigned GET) or 404. ModelResponse LOCKED for frontend-garage (fetches .glb directly from url).
+
