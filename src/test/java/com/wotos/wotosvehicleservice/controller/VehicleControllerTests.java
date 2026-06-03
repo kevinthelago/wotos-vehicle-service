@@ -1,21 +1,18 @@
 package com.wotos.wotosvehicleservice.controller;
 
 import com.wotos.wotosvehicleservice.service.VehicleService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(VehicleController.class)
 public class VehicleControllerTests {
     @Autowired
@@ -23,7 +20,7 @@ public class VehicleControllerTests {
     @MockBean
     private VehicleService vehicleService;
 
-    @Before
+    @BeforeEach
     public void init() {
         when(vehicleService.getVehicles(null, null, null, null, null, null, null, null))
                 .thenReturn(null);

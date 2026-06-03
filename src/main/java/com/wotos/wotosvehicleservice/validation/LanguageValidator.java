@@ -2,8 +2,8 @@ package com.wotos.wotosvehicleservice.validation;
 
 import com.wotos.wotosvehicleservice.validation.constraints.Language;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.EnumSet;
 
 public class LanguageValidator implements ConstraintValidator<Language, String> {

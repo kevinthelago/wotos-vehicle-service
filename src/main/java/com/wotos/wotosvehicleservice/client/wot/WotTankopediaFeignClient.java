@@ -5,16 +5,16 @@ import com.wotos.wotosvehicleservice.validation.constraints.Language;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
+// NOTE: Spring Cloud OpenFeign forbids a type-level @RequestMapping on @FeignClient
+// interfaces, so the shared "/encyclopedia" prefix is folded into each method path.
 @FeignClient(name = "WotVehicleFeignClient", url = "${env.urls.world_of_tanks_api}")
-@RequestMapping("/encyclopedia")
 public interface WotTankopediaFeignClient {
 
-    @GetMapping("/vehicles/")
+    @GetMapping("/encyclopedia/vehicles/")
     ResponseEntity<WotApiResponse<Map<Integer, WotVehicle>>> getVehicles(
             @RequestParam(name = "application_id") String appId,
             @RequestParam(name = "fields", required = false) String[] fields,
@@ -27,7 +27,7 @@ public interface WotTankopediaFeignClient {
             @RequestParam(name = "type", required = false) String[] types
     );
 
-    @GetMapping("/modules/")
+    @GetMapping("/encyclopedia/modules/")
     ResponseEntity<WotApiResponse<?>> getModules(
             @RequestParam(name = "application_id") String appId,
             @RequestParam(name = "extra", required = false) String[] extra,
