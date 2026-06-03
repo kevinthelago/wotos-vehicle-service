@@ -10,9 +10,9 @@ name: Build and Tests
 
 on:
   push:
-    branches: [ "dev", "develop" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "dev", "develop" ]
+    branches: [ "dev" ]
 
 jobs:
   build-test:
@@ -20,14 +20,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up JDK 17
+    - name: Set up JDK 8
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
+        java-version: '8.0.442+6'
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: ./mvnw -B verify --file pom.xml
+      run: mvn -B package --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph

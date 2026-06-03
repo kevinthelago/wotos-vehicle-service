@@ -2,8 +2,8 @@ package com.wotos.wotosvehicleservice.validation;
 
 import com.wotos.wotosvehicleservice.validation.constraints.VehicleType;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.util.EnumSet;
 
 public class VehicleTypeValidator implements ConstraintValidator<VehicleType, String[]> {
