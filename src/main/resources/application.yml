@@ -2,14 +2,38 @@
 # runtime — sourced from GitHub Actions secrets in CI and the deployment secret
 # store in prod (a Spring Cloud Config server may also override it). Secrets must
 # never be hardcoded here or committed to source control.
-# The datasource block is currently inert (JPA and the MySQL driver are disabled
-# in pom.xml) and is retained as scaffolding for the planned vehicle CRUD work (#7).
+#
+# Persistence (Phase 3): wotos_vehicles_database holds the local Tankopedia mirror,
+# armor profiles, and model-asset metadata. Flyway owns the schema; Hibernate only
+# validates against it (ddl-auto: validate). Connection details come from env vars
+# so the same image runs against local MySQL, CI Testcontainers, and prod RDS.
 spring:
-  jpa:
-    generate-ddl: true
   datasource:
-    initialization-mode: always
+    url: ${DB_URL:jdbc:mysql://localhost:3306/wotos_vehicles_database}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+# Object storage (Phase 3) — .glb model blobs live in S3 (prod) / MinIO (local).
+# AWS_S3_ENDPOINT is empty in prod (real AWS S3) and http://minio:9000 locally.
+storage:
+  s3:
+    endpoint: ${AWS_S3_ENDPOINT:}
+    region: ${AWS_S3_REGION:us-east-1}
+    bucket: ${AWS_S3_BUCKET:wotos-models}
+    access-key: ${AWS_ACCESS_KEY_ID:}
+    secret-key: ${AWS_SECRET_ACCESS_KEY:}
+    signed-url-ttl-seconds: 60
 
 env:
   wg-app-id: ${WG_APP_ID:}
