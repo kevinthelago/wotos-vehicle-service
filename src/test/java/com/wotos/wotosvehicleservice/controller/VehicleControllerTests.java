@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(VehicleController.class)
@@ -35,5 +36,13 @@ public class VehicleControllerTests {
     @Test
     public void shouldReturn200() throws Exception {
         this.mvc.perform(get("/api/vehicles")).andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    public void invalidLanguageReturns400Envelope() throws Exception {
+        this.mvc.perform(get("/api/vehicles").param("language", "zz"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.error").value("Bad Request"));
     }
 }

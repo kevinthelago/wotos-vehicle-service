@@ -1,6 +1,6 @@
 package com.wotos.wotosvehicleservice.armor;
 
-import org.springframework.http.ResponseEntity;
+import com.wotos.wotosvehicleservice.web.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Serves the latest armor profile for a vehicle. The React garage fetches this to
  * paint armor zones on the 3D mesh; the edge service merges it into the
- * {@code /garage} fan-out.
+ * {@code /garage} fan-out. A missing profile throws {@link ResourceNotFoundException},
+ * which the global handler renders as a 404 error envelope.
  */
 @RestController
 @RequestMapping("/api/vehicles")
@@ -21,14 +22,9 @@ public class ArmorController {
         this.armorService = armorService;
     }
 
-    /**
-     * @return {@code 200} with the latest {@link ArmorProfile}, or {@code 404} if the
-     *         vehicle has no armor profile ingested yet.
-     */
     @GetMapping("/{id}/armor")
-    public ResponseEntity<ArmorProfile> getArmor(@PathVariable("id") Integer id) {
+    public ArmorProfile getArmor(@PathVariable("id") Integer id) {
         return armorService.getArmorProfile(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseThrow(() -> new ResourceNotFoundException("no armor profile for vehicle " + id));
     }
 }
