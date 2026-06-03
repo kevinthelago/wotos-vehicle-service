@@ -34,6 +34,11 @@ public class ModelService {
         });
     }
 
+    /** @return true if a model asset row exists for the vehicle (no S3 call). */
+    public boolean hasModel(Integer vehicleId) {
+        return modelAssetRepository.findByVehicleId(vehicleId).isPresent();
+    }
+
     /** Upserts the model-asset row for a vehicle from an upload result. */
     public ModelAsset saveModelAsset(Integer vehicleId, StoredObject stored) {
         ModelAsset asset = modelAssetRepository.findByVehicleId(vehicleId).orElseGet(ModelAsset::new);
