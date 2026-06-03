@@ -54,4 +54,11 @@ class ArmorControllerTests {
         mvc.perform(get("/api/vehicles/9999/armor"))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void rejectsNonPositiveId() throws Exception {
+        mvc.perform(get("/api/vehicles/-5/armor"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400));
+    }
 }

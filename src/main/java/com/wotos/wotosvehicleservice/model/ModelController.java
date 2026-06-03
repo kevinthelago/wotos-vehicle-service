@@ -1,6 +1,8 @@
 package com.wotos.wotosvehicleservice.model;
 
 import com.wotos.wotosvehicleservice.web.ResourceNotFoundException;
+import jakarta.validation.constraints.Positive;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/vehicles")
+@Validated
 public class ModelController {
 
     private final ModelService modelService;
@@ -22,7 +25,7 @@ public class ModelController {
     }
 
     @GetMapping("/{id}/model")
-    public ModelResponse getModel(@PathVariable("id") Integer id) {
+    public ModelResponse getModel(@PathVariable("id") @Positive Integer id) {
         return modelService.getModel(id)
                 .orElseThrow(() -> new ResourceNotFoundException("no model asset for vehicle " + id));
     }

@@ -43,4 +43,11 @@ class ModelControllerTests {
         mvc.perform(get("/api/vehicles/9999/model"))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void rejectsNonPositiveId() throws Exception {
+        mvc.perform(get("/api/vehicles/0/model"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400));
+    }
 }
