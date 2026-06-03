@@ -3,6 +3,7 @@ package com.wotos.wotosvehicleservice;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.MinIOContainer;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -27,15 +28,23 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public abstract class AbstractIntegrationTest {
 
     static final MySQLContainer<?> MYSQL = new MySQLContainer<>("mysql:8.0");
+    static final MinIOContainer MINIO = new MinIOContainer("minio/minio:RELEASE.2024-06-13T22-53-53Z");
 
     static {
         MYSQL.start();
+        MINIO.start();
     }
 
     @DynamicPropertySource
-    static void datasourceProperties(DynamicPropertyRegistry registry) {
+    static void containerProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", MYSQL::getJdbcUrl);
         registry.add("spring.datasource.username", MYSQL::getUsername);
         registry.add("spring.datasource.password", MYSQL::getPassword);
+
+        registry.add("storage.s3.endpoint", MINIO::getS3URL);
+        registry.add("storage.s3.access-key", MINIO::getUserName);
+        registry.add("storage.s3.secret-key", MINIO::getPassword);
+        registry.add("storage.s3.region", () -> "us-east-1");
+        registry.add("storage.s3.bucket", () -> "wotos-models");
     }
 }
