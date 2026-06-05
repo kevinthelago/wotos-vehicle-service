@@ -1,0 +1,13 @@
+{
+  "vehicleId": 5137,
+  "zones": [
+    {"key": "hull_front",   "thicknessMm": 45.0, "geometryRef": "hull"},
+    {"key": "hull_side",    "thicknessMm": 45.0, "geometryRef": "hull"},
+    {"key": "hull_rear",    "thicknessMm": 40.0, "geometryRef": "hull"},
+    {"key": "turret_front", "thicknessMm": 90.0, "geometryRef": "turret"},
+    {"key": "turret_side",  "thicknessMm": 75.0, "geometryRef": "turret"},
+    {"key": "turret_rear",  "thicknessMm": 52.0, "geometryRef": "turret"}
+  ],
+  "generatedFrom": "tanks.gg",
+  "generatedAt": "2026-01-01T00:00:00Z"
+}

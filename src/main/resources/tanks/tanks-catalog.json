@@ -1,0 +1,13 @@
+[
+  {"tankId": 1,     "name": "MS-1",         "nation": "ussr",    "tier": 1,  "type": "lightTank"},
+  {"tankId": 545,   "name": "Leichttraktor", "nation": "germany", "tier": 1,  "type": "lightTank"},
+  {"tankId": 289,   "name": "T1 Cunningham", "nation": "usa",     "tier": 1,  "type": "lightTank"},
+  {"tankId": 6145,  "name": "M4 Sherman",    "nation": "usa",     "tier": 5,  "type": "mediumTank"},
+  {"tankId": 5137,  "name": "T-34-85",       "nation": "ussr",    "tier": 6,  "type": "mediumTank"},
+  {"tankId": 3393,  "name": "Tiger I",        "nation": "germany", "tier": 7,  "type": "heavyTank"},
+  {"tankId": 2561,  "name": "AMX 50 B",       "nation": "france",  "tier": 10, "type": "heavyTank"},
+  {"tankId": 4897,  "name": "M48 Patton",     "nation": "usa",     "tier": 10, "type": "mediumTank"},
+  {"tankId": 6753,  "name": "Maus",           "nation": "germany", "tier": 10, "type": "heavyTank"},
+  {"tankId": 7169,  "name": "IS-7",           "nation": "ussr",    "tier": 10, "type": "heavyTank"},
+  {"tankId": 10785, "name": "Object 430U",    "nation": "ussr",    "tier": 10, "type": "mediumTank"}
+]
